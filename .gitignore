@@ -1,0 +1,5 @@
+# build info
+build
+
+# clangd cache
+.cache
