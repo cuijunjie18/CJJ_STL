@@ -75,7 +75,7 @@ public:
 
 
 public:
-    const size_t default_size = 10000;
+    const size_t default_size = 16;
 private:
     size_t size_;
     T* begin_;

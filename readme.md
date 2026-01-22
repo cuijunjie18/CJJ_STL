@@ -8,6 +8,8 @@
 
 - [x] array
 - [x] vector
+- [ ] allocator
+- [ ] iterator
 - [ ] list
 - [ ] stack
 - [ ] queue
@@ -17,6 +19,7 @@
 - [ ] unordered_set
 - [ ] unordered_map
 - [ ] string
+
 
 ## 规划
 
