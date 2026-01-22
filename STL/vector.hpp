@@ -23,25 +23,35 @@ public:
         size_ = size;
     }
 
+    vector(const vector& other) {
+        size_ = other.capacity();
+        begin_ = (T*) malloc(sizeof(T) * size_);
+        memcpy(begin_, other.begin_, other.size() * sizeof(T));
+        tail_ = begin_ + other.size();
+        end_ = begin_ + size_;
+    }
+
     ~vector() {
         free(begin_);
     }
 
-    size_t size() {
+    const size_t size() const {
         return tail_ - begin_;
     }
 
-    size_t get_alloc_size() {
+    const size_t capacity() const {
         return size_;
     }
 
     void push_back(const T& data) {
         *tail_ = data;
         tail_++;
-        if (tail_ == end_) resize();
+        if (tail_ == end_) {
+            realloc();
+        }
     }
 
-    void resize() {
+    void realloc() {
         size_t raw_size = size_;
         size_ <<= 1;
         T* new_begin_ = (T*) malloc(sizeof(T) * size_);
@@ -52,7 +62,14 @@ public:
         end_ = begin_ + size_;
     }
 
+    void resize() {
+        
+    }
+
     T& operator[](size_t index) {
+        return begin_[index];
+    }
+    const T& operator[](size_t index) const {
         return begin_[index];
     }
 
