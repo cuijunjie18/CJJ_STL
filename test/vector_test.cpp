@@ -78,13 +78,13 @@ TEST_F(VectorTest, VectorCopyConstructor) {
 
 TEST_F(VectorTest, VectorWithDemo) {
     cstd::vector<Demo> data;
-    for (int i = 0; i < 5; i++) {
+    for (int i = 0; i < 31; i++) {
         Demo demo;
         data.push_back(demo);
     }
-    EXPECT_EQ(data.size(), 5);
-    EXPECT_EQ(data.capacity(), 16);
-    for (int i = 0; i < 5; i++) {
+    EXPECT_EQ(data.size(), 31);
+    EXPECT_EQ(data.capacity(), 32);
+    for (int i = 0; i < 31; i++) {
         EXPECT_NE(data[i].data_, -1); // 目前的vector实现没有基于allocator，所以析构函数不会被调用
     }
 }

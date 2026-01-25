@@ -25,6 +25,22 @@
 
 由浅入深，先实现基本功能，再考虑真实stl的实现，包括内存管理、线程安全等.
 
+## 测试
+
+![覆盖率](assets/cover.png)  
+
+## 收获
+
+### gcovr过滤操作
+
+```shell
+# 正确路径
+gcovr -r . --filter STL/
+
+# 错误用法
+gcovr -r . --filter ./STL/
+```
+
 ## 参考
 
 [1] array、vector：https://www.cnblogs.com/zhangyi1357/p/16009968.html
