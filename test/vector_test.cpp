@@ -88,8 +88,3 @@ TEST_F(VectorTest, VectorWithDemo) {
         EXPECT_NE(data[i].data_, -1); // 目前的vector实现没有基于allocator，所以析构函数不会被调用
     }
 }
-
-int main(int argc, char* argv[]) {
-    ::testing::InitGoogleTest(&argc, argv);
-    return RUN_ALL_TESTS();
-}

@@ -24,8 +24,3 @@ TEST_F(StringTest, AssignmentFromAnotherString) {
     EXPECT_TRUE(str2 == str1);
 }
 
-int main(int agrc, char* agrv[]) {
-    ::testing::InitGoogleTest(&agrc, agrv);
-    return RUN_ALL_TESTS();
-}
-

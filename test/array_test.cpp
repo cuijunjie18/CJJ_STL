@@ -44,8 +44,3 @@ TEST_F(ArrayTest, ArrayWithConst) {
     EXPECT_EQ(data[1], 0);
     // data[5] = 10; // 编译时报错
 }
-
-int main(int argc, char *argv[]) {
-    ::testing::InitGoogleTest(&argc, argv);
-    return RUN_ALL_TESTS();
-}
