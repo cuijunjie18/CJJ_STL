@@ -18,7 +18,7 @@
 - [ ] map
 - [ ] unordered_set
 - [ ] unordered_map
-- [ ] string
+- [x] string
 
 
 ## 规划

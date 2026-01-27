@@ -16,3 +16,11 @@ add_executable(
 target_link_libraries(vector_test PRIVATE
     GTest::GTest
 )
+
+add_executable(
+    string_test
+    ${TEST_SRC_DIR}/string_test.cpp
+)
+target_link_libraries(string_test PRIVATE
+    GTest::GTest
+)
