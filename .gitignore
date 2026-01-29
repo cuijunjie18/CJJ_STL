@@ -4,5 +4,9 @@ build
 # clangd cache
 .cache
 
+# zip
+*.zip
+
 # tmp
 tmp
+

@@ -10,33 +10,23 @@ MESSAGE("Test sources: ${TEST_SOURCES}")
 
 find_package(GTest REQUIRED)
 
-add_executable(
-    array_test
-    ${MAIN}
-    ${TEST_SRC_DIR}/array_test.cpp
-)
-target_link_libraries(array_test PRIVATE
-    GTest::GTest
-)
+# 定义一个函数来创建测试可执行文件
+function(add_stl_test TEST_NAME)
+    add_executable(${TEST_NAME} ${MAIN} ${TEST_SRC_DIR}/${TEST_NAME}.cpp)
+    target_link_libraries(${TEST_NAME} PRIVATE GTest::GTest)
+endfunction()
 
-add_executable(
-    vector_test
-    ${MAIN}
-    ${TEST_SRC_DIR}/vector_test.cpp
-)
-target_link_libraries(vector_test PRIVATE
-    GTest::GTest
-)
+# 获取所有测试文件并自动创建可执行文件
+foreach(TEST_SOURCE ${TEST_SOURCES})
+    # 提取测试文件名（不带路径和_test.cpp后缀）
+    get_filename_component(TEST_NAME ${TEST_SOURCE} NAME_WE)
+    # string(REPLACE "_test" "" TEST_NAME ${TEST_NAME})
+    
+    # 创建测试可执行文件
+    add_stl_test(${TEST_NAME})
+endforeach()
 
-add_executable(
-    string_test
-    ${MAIN}
-    ${TEST_SRC_DIR}/string_test.cpp
-)
-target_link_libraries(string_test PRIVATE
-    GTest::GTest
-)
-
+# 集成全部测试
 add_executable(
     all_tests
     ${MAIN}

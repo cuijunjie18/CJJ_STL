@@ -10,7 +10,7 @@
 - [x] vector
 - [ ] allocator
 - [ ] iterator
-- [ ] list
+- [x] list
 - [ ] stack
 - [ ] queue
 - [ ] priority_queue
@@ -27,7 +27,15 @@
 
 ## 测试
 
+```shell
+make build GCOVR=ON
+make test
+gcovr -r .
+```
+
 ![覆盖率](assets/cover.png)  
+
+<br>
 
 ## 收获
 
@@ -40,6 +48,8 @@ gcovr -r . --filter STL/
 # 错误用法
 gcovr -r . --filter ./STL/
 ```
+
+<br>
 
 ## 参考
 

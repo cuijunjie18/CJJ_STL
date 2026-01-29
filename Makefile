@@ -11,7 +11,7 @@ build:
 	cmake -B build $(CMAKE_ARGS)
 	cmake --build build -j
 
-test: build
+test:
 	@./build/test/all_tests
 
 clean:
