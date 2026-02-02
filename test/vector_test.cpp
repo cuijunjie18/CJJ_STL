@@ -88,3 +88,22 @@ TEST_F(VectorTest, VectorWithDemo) {
         EXPECT_NE(data[i].data_, -1); // 目前的vector实现没有基于allocator，所以析构函数不会被调用
     }
 }
+
+TEST_F(VectorTest, UseIterator) {
+    cstd::vector<int> data;
+    cstd::vector<int>::iterator it;
+    for (int i = 0; i < 10; i++) {
+        data.push_back(i);
+    }
+    it = data.begin();
+    EXPECT_EQ(*it, 0);
+    ++it;
+    EXPECT_EQ(*it, 1);
+    it += 5;
+    EXPECT_EQ(*it, 6);
+    int sum = 0;
+    for (it = data.begin(); it != data.end(); ++it) {
+        sum += *it;
+    }
+    EXPECT_EQ(sum, 45); // 0+1+2+...+9 = 45
+}

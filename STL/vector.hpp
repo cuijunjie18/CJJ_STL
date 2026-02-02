@@ -8,7 +8,43 @@ namespace cstd {
  
 template<class T>
 class vector {
+private:
+    class vector_iterator {
+    private:
+        T* ptr_;
+    public:
+        vector_iterator(T* ptr = nullptr) : ptr_(ptr) {}
+        T& operator*() {
+            return *ptr_;
+        }
+        vector_iterator& operator++() {
+            ptr_++;
+            return *this;
+        }
+        vector_iterator operator++(int) {
+            vector_iterator temp = *this;
+            ptr_++;
+            return temp;
+        }
+        T* operator->() {
+            return ptr_;
+        }
+        bool operator==(const vector_iterator& other) const {
+            return ptr_ == other.ptr_;
+        }
+        bool operator!=(const vector_iterator& other) const {
+            return ptr_ != other.ptr_;
+        }
+        vector_iterator operator+(size_t offset) const {
+            return vector_iterator(ptr_ + offset);
+        }
+        vector_iterator operator+=(size_t offset) {
+            ptr_ += offset;
+            return *this;
+        }
+    };
 public:
+    typedef vector_iterator iterator;
     vector() {
         begin_ = (T*) malloc(sizeof(T) * default_size);
         tail_ = begin_;
@@ -64,6 +100,14 @@ public:
 
     void resize() {
         
+    }
+
+    iterator begin() {
+        return iterator(begin_);
+    }
+
+    iterator end() {
+        return iterator(tail_);
     }
 
     T& operator[](size_t index) {

@@ -26,6 +26,9 @@ private:
             ptr = ptr->next;
             return *this;
         }
+        T* operator->() const {
+            return &(ptr->data);
+        }
         bool operator==(const list_iterator &t) const {
             return t.ptr == this->ptr;
         }
