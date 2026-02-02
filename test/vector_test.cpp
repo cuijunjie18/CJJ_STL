@@ -1,5 +1,7 @@
 #include <gtest/gtest.h>
 #include <gtest/internal/gtest-internal.h>
+#include <algorithm>
+#include <string>
 #include "vector.hpp"
 
 class Demo {
@@ -89,6 +91,33 @@ TEST_F(VectorTest, VectorWithDemo) {
     }
 }
 
+TEST_F(VectorTest, VectorWithString) {
+    cstd::vector<std::string> data;
+    for (int i = 0; i < 20; i++) {
+        data.push_back("String number " + std::to_string(i));
+    }
+    EXPECT_EQ(data.size(), 20);
+    EXPECT_EQ(data.capacity(), 32);
+    for (int i = 0; i < 20; i++) {
+        EXPECT_EQ(data[i], "String number " + std::to_string(i));
+    }
+}
+
+TEST_F(VectorTest, PopBack) {
+    cstd::vector<int> data;
+    for (int i = 0; i < 10; i++) {
+        data.push_back(i);
+    }
+    EXPECT_EQ(data.size(), 10);
+    data.pop_back();
+    EXPECT_EQ(data.size(), 9);
+    EXPECT_EQ(data[8], 8);
+    data.pop_back();
+    data.pop_back();
+    EXPECT_EQ(data.size(), 7);
+    EXPECT_EQ(data[6], 6);
+}
+
 TEST_F(VectorTest, UseIterator) {
     cstd::vector<int> data;
     cstd::vector<int>::iterator it;
@@ -107,3 +136,15 @@ TEST_F(VectorTest, UseIterator) {
     }
     EXPECT_EQ(sum, 45); // 0+1+2+...+9 = 45
 }
+
+// TODO：目前不支持
+// TEST_F(VectorTest, UseStdAlgorithm) {
+//     cstd::vector<int> data;
+//     for (int i = 0; i < 10; i++) {
+//         data.push_back(10 - i);
+//     }
+//     std::sort(data.begin(), data.end());
+//     for (int i = 0; i < 10; i++) {
+//         EXPECT_EQ(data[i], i + 1);
+//     }
+// }

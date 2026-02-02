@@ -11,7 +11,7 @@
 - [ ] allocator
 - [ ] iterator
 - [x] list
-- [ ] stack
+- [x] stack
 - [ ] queue
 - [ ] priority_queue
 - [ ] set

@@ -42,18 +42,28 @@ private:
             ptr_ += offset;
             return *this;
         }
+        vector_iterator operator-(size_t offset) const {
+            return vector_iterator(ptr_ - offset);
+        }
+        vector_iterator operator-=(size_t offset) {
+            ptr_ -= offset;
+            return *this;
+        }
+        // friend size_t operator-(const vector_iterator& lhs, const vector_iterator& rhs) {
+        //     return lhs.ptr_ - rhs.ptr_;
+        // }
     };
 public:
     typedef vector_iterator iterator;
     vector() {
-        begin_ = (T*) malloc(sizeof(T) * default_size);
+        begin_ = new T[default_size];
         tail_ = begin_;
         end_ = begin_ + default_size;
         size_ = default_size;
     }
 
     vector(size_t size) {
-        begin_ = (T*) malloc(sizeof(T) * size);
+        begin_ = new T[size];
         tail_ = begin_;
         end_ = begin_ + size;
         size_ = size;
@@ -61,14 +71,16 @@ public:
 
     vector(const vector& other) {
         size_ = other.capacity();
-        begin_ = (T*) malloc(sizeof(T) * size_);
-        memcpy(begin_, other.begin_, other.size() * sizeof(T));
+        begin_ = new T[size_];
+        for (int i = 0; i < size_; i++) {
+            begin_[i] = other.begin_[i];
+        }
         tail_ = begin_ + other.size();
         end_ = begin_ + size_;
     }
 
     ~vector() {
-        free(begin_);
+        delete [] begin_;
     }
 
     const size_t size() const {
@@ -87,12 +99,20 @@ public:
         }
     }
 
+    void pop_back() {
+        if (tail_ != begin_) {
+            tail_--;
+        }
+    }
+
     void realloc() {
         size_t raw_size = size_;
         size_ <<= 1;
-        T* new_begin_ = (T*) malloc(sizeof(T) * size_);
-        memcpy(new_begin_, begin_, raw_size * sizeof(T));
-        free(begin_);
+        T* new_begin_ = new T[size_];
+        for (size_t i = 0; i < raw_size; i++) {
+            new_begin_[i] = begin_[i];
+        }
+        delete [] begin_;
         begin_ = new_begin_;
         tail_ = begin_ + raw_size;
         end_ = begin_ + size_;
