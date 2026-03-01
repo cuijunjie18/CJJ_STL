@@ -4,6 +4,8 @@
 
 想了解c++中STL的具体实现，加上之前是打算法竞赛的，有点怀念写数据结构的感觉，想自己实现一些常用的STL容器
 
+<br>
+
 ## 预计产出(简单版)
 
 - [x] array
@@ -20,13 +22,17 @@
 - [ ] unordered_map
 - [x] string
 
-目前实现了iterator的组件有： array、vector、list、queue、string
+目前实现了iterator的组件有： array、vector、list、string
+
+<br>
 
 
 ## 规划
 
 - 由浅入深，先实现基本功能，再考虑真实stl的实现，包括内存管理、线程安全等.
 - 提高cjj_stl测试的分支覆盖率.
+
+<br>
 
 ## 测试
 
