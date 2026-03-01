@@ -5,7 +5,29 @@
 namespace cstl {
 
 class string {
+private:
+    class string_iterator {
+    public:
+        string_iterator(char* ptr) : ptr_(ptr) {}
+
+        char& operator*() const {
+            return *ptr_;
+        }
+
+        string_iterator& operator++() {
+            ++ptr_;
+            return *this;
+        }
+
+        bool operator!=(const string_iterator& other) const {
+            return ptr_ != other.ptr_;
+        }
+
+    private:
+        char* ptr_;
+    };
 public:
+    typedef string_iterator iterator;
     string() {
         data_ = new char[1];
         data_[0] = '\0';
@@ -47,6 +69,14 @@ public:
 
     size_t size() const {
         return strlen(data_);
+    }
+
+    iterator begin() {
+        return iterator(data_);
+    }
+
+    iterator end() {
+        return iterator(data_ + size());
     }
 private:
     char* data_;

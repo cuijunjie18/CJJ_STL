@@ -9,10 +9,10 @@
 - [x] array
 - [x] vector
 - [ ] allocator
-- [ ] iterator
+- [x] iterator(对于不同的容器可能有各自实现的iterator)
 - [x] list
 - [x] stack
-- [ ] queue
+- [x] queue
 - [ ] priority_queue
 - [ ] set
 - [ ] map
@@ -20,18 +20,28 @@
 - [ ] unordered_map
 - [x] string
 
+目前实现了iterator的组件有： array、vector、list、queue、string
+
 
 ## 规划
 
-由浅入深，先实现基本功能，再考虑真实stl的实现，包括内存管理、线程安全等.
+- 由浅入深，先实现基本功能，再考虑真实stl的实现，包括内存管理、线程安全等.
+- 提高cjj_stl测试的分支覆盖率.
 
 ## 测试
 
-```shell
-make build GCOVR=ON
-make test
-gcovr -r .
-```
+- 单个类的测试
+  ```shell
+  make build
+  ./build/test/<对应测试>
+  ```
+
+- 集成测试(跑全部测试和生成覆盖率)
+  ```shell
+  make build GCOVR=ON
+  make test
+  make gcovr
+  ```
 
 ![覆盖率](assets/cover.png)  
 

@@ -14,5 +14,10 @@ build:
 test:
 	@./build/test/all_tests
 
+gcovr:
+	@./build/test/all_tests
+	@mkdir -p tmp
+	gcovr -r .
+
 clean:
 	rm -rf build

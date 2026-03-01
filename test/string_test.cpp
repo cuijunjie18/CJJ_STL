@@ -24,3 +24,18 @@ TEST_F(StringTest, AssignmentFromAnotherString) {
     EXPECT_TRUE(str2 == str1);
 }
 
+TEST_F(StringTest, CStrMethod) {
+    cstl::string str;
+    str = "CSTL String";
+    EXPECT_STREQ(str.c_str(), "CSTL String");
+}
+
+TEST_F(StringTest, Iterator) {
+    cstl::string str;
+    str = "Iterator Test";
+    std::string result;
+    for (auto it = str.begin(); it != str.end(); ++it) {
+        result += *it;
+    }
+    EXPECT_EQ(result, "Iterator Test");
+}

@@ -44,3 +44,15 @@ TEST_F(ArrayTest, ArrayWithConst) {
     EXPECT_EQ(data[1], 0);
     // data[5] = 10; // 编译时报错
 }
+
+TEST_F(ArrayTest, ArrayWithIterator) {
+    constexpr int size = 5;
+    cstd::array<int, size> data;
+    for (int i = 0; i < size; i++) data[i] = i;
+
+    int count = 0;
+    for (auto it = data.begin(); it != data.end(); ++it) {
+        EXPECT_EQ(*it, count);
+        count++;
+    }
+}
